@@ -1,33 +1,29 @@
 import "./Style.css";
 
-export default function Info({
-  playerScores,
-  firstPlayerName,
-  secondPlayerName,
-}) {
+const Info = ({ players }) => {
   return (
     <div id="info">
-      <h2 id="info-title">Tic Tac Toe</h2>
+      <div id="info-title">Tic Tac Toe</div>
       <div className="info-player">
         <img
-          src={require("../images/cross.png")}
-          alt="Player 1 Icon"
           className="info-player-icon"
-        />
-        <h1 id="info-player-name1">{firstPlayerName}</h1>
+          src={require("../images/cross.png")}
+        ></img>
+        <h1>{players[0].name}</h1>
         <h1>:</h1>
-        <h1 id="info-player-score1">{playerScores[0]}</h1>
+        <h1>{players[0].score}</h1>
       </div>
       <div className="info-player">
         <img
-          src={require("../images/circle.png")}
-          alt="Player 2 Icon"
           className="info-player-icon"
-        />
-        <h1 id="info-player-name2">{secondPlayerName}</h1>
+          src={require("../images/circle.png")}
+        ></img>
+        <h1>{players[1].name}</h1>
         <h1>:</h1>
-        <h1 id="info-player-score2">{playerScores[1]}</h1>
+        <h1>{players[1].score}</h1>
       </div>
     </div>
   );
-}
+};
+
+export default Info;

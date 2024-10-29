@@ -1,46 +1,46 @@
-import "./Style.css";
-
-export default function Instructions({
+const Instructions = ({
   hasGameStarted,
-  didAnyoneWin,
-  mountModal,
-  firstPlayerName,
-  secondPlayerName,
-  nextIsCircle,
-  moves,
-}) {
+  isCircleNext,
+  players,
+  countOfMoves,
+  hasAnyoneWon,
+  setModalView,
+}) => {
+  const firstPlayerName = players[0].name;
+  const secondPlayerName = players[1].name;
   return (
     <div id="instructions">
       {!hasGameStarted ? (
         <>
-          <h2 id="instructions-text">Click the Button to Start</h2>
-          <button id="instructions-btn" onClick={mountModal}>
+          <div id="instructions-text">Click here to Start</div>
+          <button id="instructions-btn" onClick={() => setModalView(true)}>
             Start Game
           </button>
         </>
       ) : (
         <>
-          {didAnyoneWin && !nextIsCircle && (
+          {hasAnyoneWon && !isCircleNext && (
             <h2 id="instructions-text">{`${firstPlayerName} won`}</h2>
           )}
-          {didAnyoneWin && nextIsCircle && (
+          {hasAnyoneWon && isCircleNext && (
             <h2 id="instructions-text">{`${secondPlayerName} won`}</h2>
           )}
-          {!didAnyoneWin && nextIsCircle && moves != 9 && (
+          {!hasAnyoneWon && isCircleNext && countOfMoves !== 9 && (
             <h2 id="instructions-text">{`${firstPlayerName}'s turn`}</h2>
           )}
-          {!didAnyoneWin && !nextIsCircle && moves != 9 && (
+          {!hasAnyoneWon && !isCircleNext && countOfMoves !== 9 && (
             <h2 id="instructions-text">{`${secondPlayerName}'s turn`}</h2>
           )}
-
-          {!didAnyoneWin && moves == 9 && (
+          {!hasAnyoneWon && countOfMoves === 9 && (
             <h2 id="instructions-text">Its a draw!</h2>
           )}
-          <button id="instructions-btn" onClick={mountModal}>
+          <button onClick={() => setModalView(true)} id="instructions-btn">
             Restart Game
           </button>
         </>
       )}
     </div>
   );
-}
+};
+
+export default Instructions;
